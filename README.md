@@ -36,6 +36,7 @@ Before you create a link, you must create a sink in the monitoring account and c
 **OAM can be implemented -** 
 
 **1. as a standalone Terraform module**
+
 **2. or via Account orchestrator solutions like AWS Control Tower Account Factory for Terraform (AFT)**
 
 
