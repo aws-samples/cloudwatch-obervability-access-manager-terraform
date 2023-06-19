@@ -33,16 +33,30 @@ Before you create a link, you must create a sink in the monitoring account and c
 
 ## Solution Implementation
 
-Please follow below approach based on user choice of modules to implement based on Vended Account or Global implementation type –
+**OAM can be implemented -** 
+
+**1. as a standalone Terraform module**
+**2. or via Account orchestrator solutions like AWS Control Tower Account Factory for Terraform (AFT)**
+
+
 
 1.	User’s need to setup Sink before any Links are created or deployed.
 2.	User’s need to select an account as central account (Sink Account) where all the source accounts (linked accounts) shall send logs to the Sink accounts
 3.	User’s need to enable Sink module and disable link module to setup Sink Terraform module first
 4.	Post Sink module installation, user’s need to enable or setup  Link module which uses the output (Sink ARN) as input to the Link module.
 
+### Deploy CloudWatch OAM as a standalone solution
+
+1. Go to the directory **deployments/aft-account-customizations/LOGGING/terraform**
+2. Check the **main.tf** main module which called the **OAM Sink and Link** sub-modules to deploy OAM.
+3. Identify one Account as your **Central CloudWatch Monitoring Account** and run the **module "manage_sink"** with appropriate values.
+4. Exports of **sink** is used as inputs to **link** module **module "manage_link"**
 
 
-## Deploy CloudWatch OAM via AFT -
+
+### Deploy CloudWatch OAM via [AFT](https://docs.aws.amazon.com/controltower/latest/userguide/aft-overview.html) -
+
+Please follow below approach to setup using AWS Control Tower Account Factory for Terraform (AFT) and this is based on user choice of modules to implement based on Vended Account or Global implementation type –
 
 1.	User Clones the **aft-account-customizations** or  **aft-global-customizations** AWS CodeCommit repository.
 2.	User pushes the account specific customizations into **LOGGING/terraform/modules/<MODULE>** under **aft-account-customizations** and for global customizations into the **terraform/modules/<MODULE>**  under **aft-global-customizations** repository.
