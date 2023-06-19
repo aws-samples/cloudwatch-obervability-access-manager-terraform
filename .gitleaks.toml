@@ -1,0 +1,10 @@
+title = "project-scoped gitleaks config"
+
+[extend]
+# useDefault will extend the base configuration with the default gitleaks config:
+# https://github.com/zricethezav/gitleaks/blob/master/config/gitleaks.toml
+useDefault = true
+
+# See https://github.com/zricethezav/gitleaks#configuration
+# for details of extending this configuration for allowlists,
+# etc

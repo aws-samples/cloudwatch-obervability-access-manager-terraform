@@ -1,0 +1,18 @@
+block-list-secret-scan: []
+branch: master
+directory:
+- .
+download-external-modules: false
+evaluate-variables: true
+external-modules-download-path: .external_modules
+framework:
+- terraform
+mask: []
+output:
+- sarif
+- junitxml
+output-file-path: console,checkov-output/results_junitxml.xml
+quiet: false
+secrets-history-timeout: 12h
+secrets-scan-file-type: []
+summary-position: top

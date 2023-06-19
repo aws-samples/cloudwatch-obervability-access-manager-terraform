@@ -1,0 +1,69 @@
+name: 'TF Scan And Approve'
+
+on:
+  push:
+    branches: [ "development" ]
+
+permissions:
+  id-token: write
+  contents: write
+  pull-requests: write
+  
+env:
+  CODE_SRC_DIR: "."
+  SCRIPT_DIR: "./templates/scripts"
+  TF_VERSION: "1.4.6"
+  ENVIRONMENT: "dev"
+  SKIPVALIDATIONFAILURE: "Y"
+  ENABLE_TFVALIDATE: "Y"
+  ENABLE_TFFORMAT: "Y"
+  ENABLE_TFCHECKOV: "Y"
+  ENABLE_TFSEC: "Y"
+  TFSEC_VERSION: "v1.28.1"
+  CHECKOUT_BRANCH: "development"
+
+jobs:
+  tfsec:
+    name: tfsec sarif report
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repo
+        uses: actions/checkout@master
+
+      - name: tfsec
+        uses: tfsec/tfsec-sarif-action@main
+        with:
+          sarif_file: tfsec.sarif         
+
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          # Path to SARIF file relative to the root of the repository
+          sarif_file: tfsec.sarif    
+  Build_Create_Release:
+    needs: [tfsec]  
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@v2
+        - name: Bump version and push tag
+          id: tag_version
+          uses: mathieudutour/github-tag-action@v6.1
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+        - name: Create a GitHub release
+          uses: ncipollo/release-action@v1
+          with:
+            tag: ${{ steps.tag_version.outputs.new_tag }}
+            name: Release ${{ steps.tag_version.outputs.new_tag }}
+            body: ${{ steps.tag_version.outputs.changelog }}                                                 
+  Create-Auto-Pull-Request:
+    needs: [tfsec, Build_Create_Release]       
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: pull-request
+      uses: repo-sync/pull-request@v2
+      with:
+        destination_branch: "main"
