@@ -18,7 +18,6 @@ module "manage_sink" {
   source                     = "./modules/sink"
   sink_name                  = "CentralLoggingSink"
   allowed_oam_resource_types = ["AWS::CloudWatch::Metric", "AWS::Logs::LogGroup", "AWS::XRay::Trace"]
-  # allowed_source_accounts           = [data.aws_caller_identity.current.account_id]
   allowed_source_accounts      = ["XXXXXXXXXXXXX", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX"]
   allowed_source_organizations = []
 }
