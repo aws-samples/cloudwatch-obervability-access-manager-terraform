@@ -1,0 +1,24 @@
+{
+  "cSpell.words": [
+    "autofix",
+    "autoupdate",
+    "CODEOWNERS",
+    "gitleaks",
+    "gruntwork",
+    "hookspath",
+    "Isengard",
+    "linebreak",
+    "precommit",
+    "Retryable",
+    "ruleset",
+    "stretchr",
+    "terratest",
+    "tfenv",
+    "tflint",
+    "tfsec"
+  ],
+  "editor.formatOnSave": true,
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true
+}
