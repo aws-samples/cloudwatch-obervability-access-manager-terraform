@@ -96,6 +96,75 @@ You can use any of the following values -
 `allowed_oam_resource_types` :  OAM currently supports CloudWatch Metrics/Log Groups and X-RAT traces. You can choose to enable all or any of the three supported types to be sent to Sink.
 
 
+## Cross Account Sink to Link Connection Permission
+
+Once the OAM Links are linked to centralized OAM Sink using the Terraform module, you can go to the central monitoring account and check the status as below - 
+
+
+![oam](Images/monitoring-acc-sink1.png)
+
+Notice the message as **Monitoring account enabled**, which means this account has the OAM Sink where OAM Link's of other accounts will connect to.
+
+
+Next, you can click on the **Manage source accounts** and notice that there are source accounts configured via OAM.
+
+![oam](Images/monitoring-acc-sink5.png)
+
+
+Now, you can click on the **Resources to link accounts** and you will notice below information which suggests this is the Monitoring account abd data which is being shared from the tenant source accounts are **Metrics, Logs, Traces** and the account label as chosen in Terraform Module is **$AccountName**
+
+```bash
+Monitoring account sink ARN: arn:aws:oam:ap-south-1:XXXXXXXXXXXX:sink/22b483c6-46ac-4da1-8fdb-4c96174c3f2b
+Data shared: Metrics, Logs, Traces
+Defined account label: $AccountName
+```
+
+you will notice options to **approve** connection from **link** to **sink**. 
+
+You can use either of the two options to approve tenant account to connect to monitoring account via AWS Organizations or via individual AWS Accounts. You have an option to use or run either 
+
+```bash
+- CloudFormation template to approve at AWS Organization level or at an Account level,
+- Or, approve each account individually using an approval link.
+```
+
+![oam](Images/monitoring-acc-sink20.png)
+
+
+For simplicity, Click on **Any Account** to approve at each account level by using the **copy url** method. Using this method, you will be given an approval link for each account. You can open a browser, paste the link and **approve link connect to sink** like below by logging into that specific account - 
+
+![oam](Images/monitoring-acc-sink20.png)
+
+
+![oam](Images/monitoring-acc-sink2.png)
+
+![oam](Images/monitoring-acc-sink3.png)
+
+Once you approve the connection at the tenant source account, you will see the status as **Linked** like below 
+
+![oam](Images/monitoring-acc-sink4.png)
+
+## Viewing Cross Account Logs post Setup
+
+Once all the OAM Links are coonected with approvals to centralized OAM Sink, we can see all the CloudWatch logs, metrics, traces from the central monitoring account in one view from the monitoring account. 
+
+
+Go to the central monitoring account and view all the cross-account logs, metrics and traces -
+
+**For example, you can view the cross-account Log Groups from single pane of monitoring account**
+
+![oam](Images/monitoring-acc-sink6.png)
+
+![oam](Images/monitoring-acc-sink7.png)
+
+**For example, you can view the cross-account CloudWatch Metrics from single pane of monitoring account**
+
+![oam](Images/monitoring-acc-sink8.png)
+
+![oam](Images/monitoring-acc-sink9.png)
+
+![oam](Images/monitoring-acc-sink19.png)
+
 ### LICENSE
 
 Please refer LICENSE file.
