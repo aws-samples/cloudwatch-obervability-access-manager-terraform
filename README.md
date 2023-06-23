@@ -60,8 +60,8 @@ Before you create a link, you must create a sink in the monitoring account and c
 Please follow below approach to setup using AWS Control Tower Account Factory for Terraform (AFT) and this is based on user choice of modules to implement based on Vended Account or Global implementation type –
 
 1.	User Clones the **aft-account-customizations** or  **aft-global-customizations** AWS CodeCommit repository.
-2.	User pushes the account specific customizations into **LOGGING/terraform/modules/<MODULE>** under **aft-account-customizations** and for global customizations into the **terraform/modules/<MODULE>**  under **aft-global-customizations** repository.
-3.	User updates the main.tf available at **aft-account-customizations/AWSCONFIG/terraform/** to invoke the account specific customizations module and main.tf available at **aft-global-customizations/terraform/** to invoke global customizations module.
+2.	Create a sample directory called **LOGGING** and put the OAM Terraform code inside this directory. User pushes the account specific customizations into **LOGGING/terraform/modules/<MODULE>** under **aft-account-customizations** and for global customizations into the **terraform/modules/<MODULE>**  under **aft-global-customizations** repository.
+3.	User updates the main.tf available at **aft-account-customizations/LOGGING/terraform/** to invoke the account specific customizations module and main.tf available at **aft-global-customizations/terraform/** to invoke global customizations module.
 4.	If you wish to apply any module to existing vended accounts, go to AFT Management Account and run the account specific pipeline, for example **{{MEMBER-ACCOUNTID}}-customizations-pipeline** and you should see the customizations available when the AWS CodePipeline is successful.
 Please check **README.MD** of each module for detailed instructions.
 
