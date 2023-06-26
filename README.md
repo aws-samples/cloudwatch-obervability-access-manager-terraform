@@ -165,6 +165,53 @@ Go to the central monitoring account and view all the cross-account logs, metric
 
 ![oam](Images/monitoring-acc-sink19.png)
 
+### [OPTIONAL] Enable account switching from Monitoring Account and View cross-account cross-region from Monitoring Account
+
+You can also share your CloudWatch metrics, dashboards, logs widgets, and alarms with other accounts, so that they can easily view your data using a role.
+
+CloudWatch gives you ability to an IAM role **CloudWatch-CrossAccountSharingRole** in all the accounts which has in trust relationship all the source OAM Link accounts to assume role and show data in the same Monitoring Account AWS Console just by selecting Account accounts and/or regions in them. 
+
+CloudWatch provides you a sample CloudFormation script to create the role when you click on Manage role in IAM. Run this script in all accounts.
+
+```bash
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": [
+                    "arn:aws:iam::XXXXXXXXX:root",
+                    "arn:aws:iam::XXXXXXXXX:root",
+                    "arn:aws:iam::XXXXXXXXX:root",
+                    "arn:aws:iam::XXXXXXXXX:root"
+                ]
+            },
+            "Action": "sts:AssumeRole"
+        }
+    ]
+}
+```
+
+[OPTIONAL] Once, above stepis done View cross-account cross-region from Monitoring Account. Go to the Monitoring Account and click on . This will allow you to easily switch views between accounts (that have granted you permission to their data), without the need to authenticate, using a selector in the console. You have three options -
+
+```bash
+Account Id Input: Manually input the account Id every time you want to change accounts
+
+AWS Organization account selector: A dropdown selector that provides a full list of accounts in your organization
+
+Custom account selector: Manually input a list of Account Id's to populate a dropdown selector
+```
+
+
+Finally, you can view the cross-account data by simply choosing the Source Link account and selecting the region to view the data -
+
+![oam](Images/monitoring-acc-sink22.png)
+
+![oam](Images/monitoring-acc-sink23.png)
+
+![oam](Images/monitoring-acc-sink24.png)
+
 ### LICENSE
 
 Please refer LICENSE file.
