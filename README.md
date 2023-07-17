@@ -136,7 +136,7 @@ For simplicity, Click on **Any Account** to approve at each account level by usi
 ![oam](Images/monitoring-acc-sink20.png)
 
 
-![oam](Images/monitoring-acc-sink2.png)
+![oam](Images/monitoring-acc-sink25.png)
 
 ![oam](Images/monitoring-acc-sink3.png)
 
