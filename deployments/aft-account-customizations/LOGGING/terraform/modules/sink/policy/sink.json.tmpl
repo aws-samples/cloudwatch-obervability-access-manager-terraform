@@ -16,9 +16,12 @@
           ]
         }
       }
-    },
+    }
     %{ endif }
-    %{ if allowed_orgs != "" }
+    %{ if length(allowed_accounts) * length(allowed_orgs) != 0  }
+    ,
+    %{endif }
+    %{ if length(allowed_orgs) != 0 }
     {
       "Effect": "Allow",
       "Principal": "*",
@@ -33,7 +36,7 @@
           ]
         },
         "ForAnyValue:StringEquals": {
-          "aws:PrincipalOrgID": "${allowed_orgs}"
+          "aws:PrincipalOrgID": "${jsonencode(allowed_orgs)}"
         }
       }
     }
