@@ -57,13 +57,18 @@ Before you create a link, you must create a sink in the monitoring account and c
 
 ### Deploy CloudWatch OAM via [AFT](https://docs.aws.amazon.com/controltower/latest/userguide/aft-overview.html) -
 
-Please follow below approach to setup using AWS Control Tower Account Factory for Terraform (AFT) and this is based on user choice of modules to implement based on Vended Account or Global implementation type –
+As a single account is designated for Monitoring account where OAM is setup. You could export a monitoring account's credentials and install the `OAM Sink` Terraform module. Once the OAM Sink module setup is completed, you could use AFT  
+customizations to install the `OAM Link` which will connect to the `OAM Sink` module installed previously outside AFT ecosystem. 
 
-1.	User Clones the **aft-account-customizations** or  **aft-global-customizations** AWS CodeCommit repository.
-2.	Create a sample directory called **LOGGING** and put the OAM Terraform code inside this directory. User pushes the account specific customizations into **LOGGING/terraform/modules/<MODULE>** under **aft-account-customizations** and for global customizations into the **terraform/modules/<MODULE>**  under **aft-global-customizations** repository.
-3.	User updates the main.tf available at **aft-account-customizations/LOGGING/terraform/** to invoke the account specific customizations module and main.tf available at **aft-global-customizations/terraform/** to invoke global customizations module.
-4.	If you wish to apply any module to existing vended accounts, go to AFT Management Account and run the account specific pipeline, for example **{{MEMBER-ACCOUNTID}}-customizations-pipeline** and you should see the customizations available when the AWS CodePipeline is successful.
-Please check **README.MD** of each module for detailed instructions.
+To achieve this setup -
+
+1. Please insert Terraform code for remote backend with state locking using DynamoDB before deploying `OAM Sink` module.and setup `OAM Sink` module by exporting credentials for a central monitoring account with a remote backend like Amazon S3 (with state locking with DynamoDB prederably). 
+
+
+2. Add `OAM Link` connection with `OAM Sink` module installed in previous step by inserting [Terraform remote state access code](https://developer.hashicorp.com/terraform/language/state/remote-state-data) in the with `OAM Link` Terraform module.
+
+3. FInally setup `OAM Link` in each vended account using AFT's **aft-global-customizations** (preferably) or **aft-account-customizations** to connect newly vended accounts's `OAM Link` to monitoring account's `OAM Sink`
+
 
 
 ## Terraform Modules Overview
