@@ -58,8 +58,7 @@ Before you create a link, you must create a sink in the monitoring account and c
 
 ### Deploy CloudWatch OAM via [AFT](https://docs.aws.amazon.com/controltower/latest/userguide/aft-overview.html) -
 
-As a single account is designated for Monitoring account where OAM is setup. You could export a monitoring account's credentials and install the `OAM Sink` Terraform module. Once the OAM Sink module setup is completed, you could use AFT  
-customizations to install the `OAM Link` which will connect to the `OAM Sink` module installed previously outside AFT ecosystem. 
+As a single account is designated for Monitoring account where OAM is setup. You could export a monitoring account's credentials and install the `OAM Sink` Terraform module. Once the OAM Sink module setup is completed, you could use AFT customizations to install the `OAM Link` which will connect to the `OAM Sink` module installed previously outside AFT ecosystem. 
 
 To achieve this setup -
 
