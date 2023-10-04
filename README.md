@@ -50,8 +50,9 @@ Before you create a link, you must create a sink in the monitoring account and c
 
 1. Go to the directory **deployments/aft-account-customizations/LOGGING/terraform**
 2. Check the **main.tf** main module which called the **OAM Sink and Link** sub-modules to deploy OAM.
-3. Identify one Account as your **Central CloudWatch Monitoring Account** and run the **module "manage_sink"** with appropriate values.
+3. Identify one Account as your **Central CloudWatch Monitoring Account** and run the **module "manage_sink"** with appropriate values. Please export credentials of the Monitoring Account and before installing the **OAM Sink** module.
 4. Exports of **sink** is used as inputs to **link** module **module "manage_link"**
+5. Once the **OAM Sink** is installed, export credentials of target/source account and install the **OAM Link** module.
 
 
 
