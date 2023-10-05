@@ -217,6 +217,19 @@ Finally, you can view the cross-account data by simply choosing the Source Link 
 
 ![oam](Images/monitoring-acc-sink24.png)
 
+
+### Limitations
+
+Amazon CloudWatch Observability Access Manager (OAM) also has service limits like all AWS Services. AWS OAM has following limits. Please consider before deploying.
+
+`OAM source account links:` Each source account can be linked to as many as 5 monitoring accounts (This quota can't be changed)
+
+`OAM sinks:` 1 sink per account (This quota can't be changed)
+
+Please check below documentation  here for more information.
+
+https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_limits.html
+
 ### LICENSE
 
 Please refer LICENSE file.
