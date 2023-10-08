@@ -67,7 +67,7 @@ To achieve this setup -
 
 2. The `OAM Link` connection with `OAM Sink` module is done using the `sink_arn` parameter `(deployments/aft-account-customizations/LOGGING/terraform/main.tf )` of the `OAM Link` module (which was installed in previous step). Insert [Terraform remote state access code](https://developer.hashicorp.com/terraform/language/state/remote-state-data) in the `OAM Link` module `(deployments/aft-account-customizations/LOGGING/terraform/modules/link)` to fetch the `sink_arn` field of the `OAM Link` module from the remote state in Amazon S3 bucket (from point 1 above). Alternatively, you could setup an SSM Parameter in the AFT Management Account to fetch the `sink_arn` parameter of the `OAM Link` module.
 
-`NOTE`: It's not necessary to use remote state access to fetch the **sink_arn**. You could simply pass this value a variable in the **OAM Link** module. Storing Terraform remote state and fetching values from that state gives long term value of secure storage and reliability.
+`NOTE`: It's not necessary to use remote state access to fetch the **sink_arn**. You could simply pass this value a variable in the **OAM Link** module (in point-3 below step). Storing Terraform remote state and fetching values from that state gives long term value of secure storage and reliability.
 
 3. FInally setup `OAM Link` in each vended account using AFT's **aft-global-customizations** (preferably) or **aft-account-customizations** to connect newly vended accounts's `OAM Link` to monitoring account's `OAM Sink`
 
