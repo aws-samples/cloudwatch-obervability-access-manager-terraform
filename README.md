@@ -69,7 +69,7 @@ To achieve this setup -
 
 Alternatively, you could setup an SSM Parameter in the AFT Management Account to fetch the `sink_arn` parameter of the `OAM Link` module.
 
-`NOTE`: It's not necessary to use remote state access to fetch the **sink_arn**. You could simply pass this value a variable in the **OAM Link** module (in point-3 below step). Storing Terraform remote state and fetching values from that state gives long term value of secure storage and reliability.
+`NOTE`: It's not necessary to use remote state access or via SSM parameter store to fetch the **sink_arn**. You could simply pass this value a variable in the **OAM Link** module (in point-3 below step). Storing Terraform remote state and fetching values from that state gives long term value of secure storage and reliability.
 
 3. FInally setup `OAM Link` in each vended account using AFT's **aft-global-customizations** (preferably) or **aft-account-customizations** to connect newly vended accounts's `OAM Link` to monitoring account's `OAM Sink`
 
