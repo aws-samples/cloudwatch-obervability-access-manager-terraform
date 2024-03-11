@@ -18,5 +18,5 @@ resource "aws_oam_sink" "central_logging_sink" {
 
 resource "aws_oam_sink_policy" "central_logging_sink_policy" {
   sink_identifier = aws_oam_sink.central_logging_sink.id
-  policy          = jsonencode(local.sink_policy)
+  policy          = local.sink_policy
 }
