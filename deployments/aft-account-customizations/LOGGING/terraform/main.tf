@@ -23,3 +23,13 @@ module "manage_sink" {
 }
 
 
+# ##############
+# # OAM Link
+# ##############
+
+module "manage_link" {
+  source                     = "./modules/link"
+  sink_arn                   = module.manage_sink.sink_arn
+  account_label              = "$AccountName" # change accordingly
+  allowed_oam_resource_types = ["AWS::Logs::LogGroup", "AWS::CloudWatch::Metric", "AWS::XRay::Trace", "AWS::ApplicationInsights::Application"]
+}
